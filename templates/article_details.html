@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}
+        {{ post.title_tag }}
+    {% endblock %}
+</head>
+{% block content %}
+    <body>
+    <h1><big> {{ post.author }} on {{ post.date }} </big></h1>
+    <a href="{% url 'edit_post' post.pk %}">Edit</a> or
+    <a href="{% url 'delete_post' post.pk %}">Delete</a>
+    <hr>
+    </br>
+    <div>
+        {{ post.body }}
+    </div>
+    <br>
+    <a href="{% url 'home' %}" class="btn btn-danger"> Home </a>
+    </body>
+{% endblock %}
+<br>
+</html>
