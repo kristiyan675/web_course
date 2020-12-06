@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,14 +9,19 @@
 </head>
 {% block content %}
     <body>
-    <h1>Edit Post Here</h1>
-    <div class="form-group">
-        <form method="post">
+    {% if user.is_authenticated %}
+        <h1>Edit Post Here</h1>
+        <div class="form-group">
+            <form method="post">
                 {% csrf_token %}
-                {{ form.as_p}}
-            <button class="btn btn-danger">Post</button>
-        </form>
-    </div>
+                {{ form.as_p }}
+                <button class="btn btn-danger">Post</button>
+            </form>
+        </div>
+        {% else %}
+            You must login or register first.
+
+    {% endif %}
     </body>
 {% endblock %}
 </html>

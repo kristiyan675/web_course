@@ -5,20 +5,20 @@
 <head>
     <meta charset="UTF-8">
     {% block title %}
-        {{ post.title_tag }}
+        New Category
     {% endblock %}
 </head>
 {% block content %}
     <body>
     {% if user.is_authenticated %}
-    <h1>Add Post Here</h1>
+    <h1>Add Category Here</h1>
     <div class="form-group">
         <form method="post">
             <table>
                 {% csrf_token %}
                 {{ form.as_p }}
             </table>
-            <button class="btn btn-danger">Post</button>
+            <button class="btn btn-danger">Add Category</button>
         </form>
     </div>
     {% else %}

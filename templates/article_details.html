@@ -11,12 +11,14 @@
 {% block content %}
     <body>
     <h1><big> {{ post.author }} on {{ post.date }} </big></h1>
-    <a href="{% url 'edit_post' post.pk %}">Edit</a> or
-    <a href="{% url 'delete_post' post.pk %}">Delete</a>
+    {% if user.is_authenticated %}
+        <a href="{% url 'edit_post' post.pk %}">Edit</a> or
+        <a href="{% url 'delete_post' post.pk %}">Delete</a>
+    {% endif %}
     <hr>
     </br>
     <div>
-        {{ post.body }}
+        {{ post.body|safe }}
     </div>
     <br>
     <a href="{% url 'home' %}" class="btn btn-danger"> Home </a>

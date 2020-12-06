@@ -10,6 +10,7 @@
 </head>
 {% block content %}
     <body>
+    {% if user.is_authenticated %}
     <h1>Delete Post {{ post.title }} Here </h1>
     <div class="form-group">
         <form method="post">
@@ -17,6 +18,9 @@
             <button class="btn btn-danger">Delete Post</button>
         </form>
     </div>
+    {% else %}
+    You must login or register first.
+    {% endif %}
     </body>
 {% endblock %}
 </html>

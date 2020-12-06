@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Category</title>
+</head>
+{% block content %}
+    <body>
+    <h1>Category: {{ cat }}</h1>
+    <br>
+    {% if posts %}
+    {% for post in posts %}
+        {{ post.pk }} ---
+        {{ post.author }}:<br>
+        {{ post.body }}
+        <br>
+        <br>
+    {% endfor %}
+    {% else %}
+     No posts for this category
+    {% endif %}
+    </body>
+{% endblock %}
+
+</html>
