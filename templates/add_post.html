@@ -21,6 +21,11 @@
             <button class="btn btn-danger">Post</button>
         </form>
     </div>
+        <script>
+        var name = '{{ user.id }}';
+        document.getElementById('user').value = name;
+
+        </script>
     {% else %}
     You must login or register first.
     {% endif %}

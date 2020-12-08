@@ -10,16 +10,29 @@
 {% block content %}
     <body>
     {% if user.is_authenticated %}
-        <h1>Edit Post Here</h1>
-        <div class="form-group">
-            <form method="post">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button class="btn btn-danger">Post</button>
-            </form>
-        </div>
+        {% if user.id == post.author.id %}
+            <h1>Edit Post Here</h1>
+            <div class="form-group">
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button class="btn btn-danger">Post</button>
+                </form>
+            </div>
+        {% elif user.is_superuser %}
+            <h1>Edit Post Here</h1>
+            <div class="form-group">
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button class="btn btn-danger">Post</button>
+                </form>
+            </div>
         {% else %}
-            You must login or register first.
+            This is not your post
+        {% endif %}
+    {% else %}
+        You must login or register first.
 
     {% endif %}
     </body>

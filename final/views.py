@@ -56,8 +56,10 @@ class DeletePostView(DeleteView):
 
 
 def CategoryView(request, cat):
-    context = {
-        'cat': cat.title().replace('-', ' '),
-        'posts': Post.objects.filter(category=cat.replace('-', ' '))
-    }
-    return render(request, 'categories.html', context)
+    posts = Post.objects.filter(category=cat.replace('-', ' '))
+    return render(request, 'categories.html', {'posts': posts, 'cat': cat.replace('-', ' ')})
+
+
+def CategoryList(request):
+    category_list = Category.objects.all()
+    return render(request, 'category_list.html', {"category_list": category_list})

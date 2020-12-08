@@ -9,17 +9,16 @@
     <body>
     <h1>Category: {{ cat }}</h1>
     <br>
+   {{ posts.count }}
+    <br>
     {% if posts %}
     {% for post in posts %}
-        {{ post.pk }} ---
-        {{ post.author }}:<br>
-        {{ post.body }}
-        <br>
-        <br>
+        {{ post.title }}<br>
     {% endfor %}
     {% else %}
-     No posts for this category
+    No posts for this category
     {% endif %}
+
     </body>
 {% endblock %}
 

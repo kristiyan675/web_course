@@ -20,6 +20,8 @@ class Post(models.Model):
     body = models.TextField()
     date = models.DateField(auto_now_add=True)
     category = models.CharField(max_length=200, default='coding')
+    likes = models.ManyToManyField(User, related_name='block_post')
+
 
     def __str__(self):
         return f"{self.title} by author: {self.author} with pk: {self.pk}"
