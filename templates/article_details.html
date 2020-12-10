@@ -56,7 +56,21 @@
     {% endif %}
     <br>
     <br>
-    So far this post has: {{ total_likes }} Likes
+    So far this post has: {{ total_likes }} Likes <br><br>
+
+    <h2>Comments:</h2>
+
+    {% if not post.comments.all %}
+    No comments yet. <a href="{% url 'add_comment' post.pk %}">Add Comment</a>
+    {% else %}
+
+        {% for comment in post.comments.all %}
+            <strong> {{ comment.name }} - {{ comment.body }} </strong>, from : {{ comment.date_added }}
+            <br>
+        {% endfor %}
+        <a href="{% url 'add_comment' post.pk %}">Add Comment</a>
+    {% endif %}
+
     <br><br><br>
     <div class="card mb-3">
         <div class="row no-gutters">

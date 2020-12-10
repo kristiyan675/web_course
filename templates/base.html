@@ -50,19 +50,6 @@
                     <a class="nav-link" href="{% url 'create_category' %}">Add Category</a>
                 </li>
 
-
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Profile
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="{% url 'edit_profile' %}">Edit Settings</a></li>
-                        <li><a class="dropdown-item" href="{% url 'edit_profile_page' user.profile.id %}">Edit Profile Page</a></li>
-                        <li><a class="dropdown-item" href="{% url 'show_profile' user.profile.id %}">Show Profile Page</a></li>
-                    </ul>
-                </li>
-
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'logout' %}">Logout</a>
                 </li>
@@ -77,6 +64,30 @@
                 </li>
             {% endif %}
         </ul>
+
+    <ul class="navbar-nav ml-auto">
+        {% if user.is_authenticated %}
+        <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{ user.first_name }} {{ user.last_name }}
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="{% url 'edit_profile' %}">Edit Settings</a></li>
+
+                        {% if user.profile.id %}
+                            <a class="dropdown-item" href="{% url 'edit_profile_page' user.profile.id %}">Edit
+                                Profile Page</a>
+
+                            <a class="dropdown-item" href="{% url 'show_profile' user.profile.id %}">Show Profile
+                            Page</a>
+
+                            {% else %}
+                            <a class="dropdown-item" href="{% url "create_profile_page" %}"> Create Profile Page</a>
+                        {% endif %}
+                    </ul>
+                </li>
+    {% endif %}
     </div>
 </nav>
 <div class="container">

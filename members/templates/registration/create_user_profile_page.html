@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}
+        {{ post.title_tag }}
+    {% endblock %}
+</head>
+{% block content %}
+    <body>
+    {% if user.is_authenticated %}
+    <h1>Add Profile Here</h1>
+    <div class="form-group">
+        <form method="post" enctype="multipart/form-data">
+            <table>
+                {% csrf_token %}
+                {{ form.as_p }}
+            </table>
+            <button class="btn btn-danger">Create Profile Page</button>
+        </form>
+    </div>
+    {% else %}
+    You must login or register first.
+    {% endif %}
+    </body>
+{% endblock %}
+</html>

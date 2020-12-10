@@ -3,8 +3,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
-from final.models import Post, Category
-from .forms import PostForm
+from final.models import Post, Category, Comment
+from .forms import PostForm, CommentForm
 
 
 class HomeView(ListView):
@@ -44,6 +44,18 @@ class AddPostView(CreateView):
     model = Post
     form_class = PostForm
     template_name = 'add_post.html'
+
+
+class AddCommentView(CreateView):
+    model = Comment
+    form_class = CommentForm
+    template_name = 'add_comment.html'
+
+    def form_valid(self, form):
+        form.instance.post_id = self.kwargs['pk']
+        return super().form_valid(form)
+
+    success_url = reverse_lazy('home')
 
 
 class AddCategoryView(CreateView):

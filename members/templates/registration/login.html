@@ -15,7 +15,14 @@
         <form method="post">
             <table>
                 {% csrf_token %}
-                {{ form.as_p}}
+
+                <div class="mb-3">
+                    <input type="text" class="form-control" name="username" placeholder="Username">
+                    <br>
+                <div class="mb-3">
+                    <input type="password" class="form-control" name="password" placeholder="Password">
+                </div>
+
             </table>
             <button class="btn btn-danger">Login</button>
         </form>
