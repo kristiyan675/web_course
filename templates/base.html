@@ -21,31 +21,48 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
 
-        {% if cat_menu %}
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false">
-                    Categories
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    {% for x in cat_menu %}
-                        <a class = "dropdown-item" href="{% url 'category' x|slugify %}"> {{ x }} </a>
-                    {% endfor %}
-                </div>
-            </li>
+            {% if cat_menu %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        Categories
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        {% for x in cat_menu %}
+                            <a class="dropdown-item" href="{% url 'category' x|slugify %}"> {{ x }} </a>
+                        {% endfor %}
+                    </div>
+                </li>
             {% else %}
-            <li class="nav-item">
+                <li class="nav-item">
                     <a class="nav-link" href="{% url 'category-list' %}">Categories</a>
-            </li>
+                </li>
             {% endif %}
 
             {% if user.is_authenticated %}
+
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'create_post' %}">Add Post</a>
                 </li>
+
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'create_category' %}">Add Category</a>
                 </li>
+
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Profile
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="{% url 'edit_profile' %}">Edit Settings</a></li>
+                        <li><a class="dropdown-item" href="{% url 'edit_profile_page' user.profile.id %}">Edit Profile Page</a></li>
+                        <li><a class="dropdown-item" href="{% url 'show_profile' user.profile.id %}">Show Profile Page</a></li>
+                    </ul>
+                </li>
+
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'logout' %}">Logout</a>
                 </li>

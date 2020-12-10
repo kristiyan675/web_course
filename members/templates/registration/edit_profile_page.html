@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}
+        {{ post.title_tag }}
+    {% endblock %}
+</head>
+{% block content %}
+    <body>
+    {% if user.is_authenticated %}
+    {% if user.id == profile.user.id %}
+        <h1>Edit Profile</h1>
+        <div class="form-group">
+            <form method="post" enctype="multipart/form-data">
+                <table>
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                </table>
+                <button class="btn btn-danger">Update Profile page</button>
+            </form>
+        </div>
+        {% endif %}
+    {% else %}
+        You must login or register first.
+    {% endif %}
+    </body>
+{% endblock %}
+</html>

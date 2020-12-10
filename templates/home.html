@@ -29,7 +29,9 @@
         {% endif %}
         <br>
         <br>
-        {{ post.body|slice:":100"|safe }}<br>
+        {{ post.snippet }}
+        <br>
+        <br>
     {% endfor %}
 
     </body>

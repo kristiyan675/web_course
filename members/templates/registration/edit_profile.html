@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}
+        Edit Profile
+    {% endblock %}.
+</head>
+{% block content %}
+    <body>
+    <h1>Edit Settings</h1> <br><br>
+    Bio: {{ user.profile.bio }}
+    <br><br>
+    <div class="form-group">
+        <form method="post">
+            <table>
+                {% csrf_token %}
+                {{ form.as_p}}
+            </table>
+            <button class="btn btn-danger">Edit</button>
+        </form>
+    </div>
+    </body>
+{% endblock %}
+</html>
