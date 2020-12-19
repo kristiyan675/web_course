@@ -8,7 +8,7 @@ class Category(models.Model):
     name = models.CharField(max_length=200)
 
     def __str__(self):
-        return f"{self.name}"
+        return f"{self.name.lower()}"
 
     def get_absolute_url(self):
         return reverse('home')
